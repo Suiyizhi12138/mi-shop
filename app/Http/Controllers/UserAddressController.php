@@ -16,7 +16,7 @@ class UserAddressController extends Controller
 
         return response()->json($address);
     }
-    //上传单个地址信心
+    //上传单个地址信息
     public function addAddress(AddRequest $request){
         
         $user = $request->user();

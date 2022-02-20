@@ -78,7 +78,6 @@ class OrderController extends Controller
             //将下单的商品从购物车中移除
             $skuIds = collect($items)->pluck('product_sku_id');
             $user->cartItem()->whereIn('product_sku_id',$skuIds)->delete();
-
             return $order;
         });
         //触发关闭订单任务
@@ -86,15 +85,15 @@ class OrderController extends Controller
         
         return $this->getOrder($order->no);
     }
-   
     //修改订单
     public function updateOrder()
     {
     }
-
     //删除订单
-    public function deleteOrder()
-    {
+    public function deleteOrder(Request $request){
+        $no = $request->input('no');
+        Order::where('no','=',$no)->delete();
+        return response()->json(["message"=>"success"]);
     }
     //查询当前用户所有订单
     public function getOrders(Request $request)

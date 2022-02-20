@@ -7,6 +7,8 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\UserAddressController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\UserVirtualAccountController;
+use App\Models\Order;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -26,8 +28,11 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 });
 Route::get('/categories',[CategoriesController::class,'getCategories']);
 
+//获取所有顶级分类及产品
 Route::get('/alltopcategories',[CategoriesController::class,'getAllTopCategories']);
+//获取所有分类
 Route::get('/allcategories',[CategoriesController::class,'getAllCategories']);
+//获取单个商品信息
 Route::get('/product/{id}',[ProductsController::class,'getProduct']);
 
 
@@ -41,6 +46,7 @@ Route::post('/search-products',[ProductsController::class,'searchProducts']);
 
 Route::group(['middleware' => ['auth:api']], function () {
     Route::post('logout', [UserController::class,'logout']);
+    
     Route::get('userinfo', [UserController::class,'userinfo']);
     //添加到购物车
     Route::post('add',[CartController::class,'add']);
@@ -68,6 +74,8 @@ Route::group(['middleware' => ['auth:api']], function () {
     Route::get('/order/{no}',[OrderController::class,'getOrder']);
     //查询全部订单
     Route::get('/orders',[OrderController::class,'getOrders']);
+    //删除订单
+    Route::delete('/order',[OrderController::class,'deleteOrder']);
     //跳转支付宝支付页面
     //Route::get('/payment/alipay',[PaymentController::class,'payByAlipay']);
 
@@ -82,5 +90,9 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     //查询喜欢的商品
     Route::get('/product/like/products',[ProductsController::class,'getLikeProducts']);
-
+    
+    //购买商品（消费）
+    Route::post('/pay/cost',[UserVirtualAccountController::class,'cost']);   
+    
+    
 });

@@ -46,3 +46,8 @@ Route::post('/payment/alipay/notify',[PaymentController::class,'alipayNotify'])
 
 //测试路由
 // Route::get('/update/sold/count/{no}',[PaymentController::class,'updateSoldCount']);
+
+//练习路由 test route
+Route::get("test",function(){
+    return view('test');
+});

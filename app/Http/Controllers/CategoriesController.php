@@ -23,8 +23,10 @@ class CategoriesController extends Controller
         $categories = TopCategory::with([
             'products'=>function($query){
               $query->orderBy('created_at','desc');
+            
             }
         ])
+        
         ->get();
 
         return response()->json($categories);
@@ -33,7 +35,7 @@ class CategoriesController extends Controller
     public function getAllCategories(){
         $categories = Category::with([
             'products'=>function($query){
-               return $query->orderBy('created_at','desc');
+                $query->orderBy('created_at','desc');
             }
         ])
         

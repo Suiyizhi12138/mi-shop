@@ -61,10 +61,14 @@ class User extends Authenticatable
     public function orderItem(){
         return $this->hasMany(Order::class);
     }
-
+    //收藏商品
     public function likedProducts(){
         return $this->belongsToMany(Product::class,'user_like_products')
         ->withTimeStamps()
         ->orderBy('user_like_products.created_at','desc');
+    }
+    //与用户虚拟账户一对一关联
+    public function virtualAccount(){
+        return $this->hasOne(UserVirtualAccount::class);
     }
 }
