@@ -17,13 +17,13 @@ class UserRepository implements UserRepositoryInterface
 {
     const SUCCUSUS_STATUS_CODE = 200;
     const UNAUTHORISED_STATUS_CODE = 401;
-    const BASE_URL = "http://mi-shop.test";
+    
 
     public function __construct(Client $client)
     {
         $this->http = $client;
+        $this->baseUrl = env('APP_IRL');
     }
-
     public function register(Request $request)
     {
         $email = $request->email;
@@ -116,7 +116,7 @@ class UserRepository implements UserRepositoryInterface
     public function sendRequest(string $route, array $formParams)
     {
         try {
-            $url = self::BASE_URL . $route;
+            $url = $this->baseUrl . $route;
             $response = $this->http->request('POST', $url, ['form_params' => $formParams]);
 
             $statusCode = self::SUCCUSUS_STATUS_CODE;
