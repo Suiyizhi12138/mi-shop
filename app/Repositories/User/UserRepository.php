@@ -22,7 +22,7 @@ class UserRepository implements UserRepositoryInterface
     public function __construct(Client $client)
     {
         $this->http = $client;
-        $this->baseUrl = env('APP_IRL');
+        $this->baseUrl = env('APP_URL');
     }
     public function register(Request $request)
     {

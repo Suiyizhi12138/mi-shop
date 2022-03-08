@@ -17,7 +17,6 @@ class CreateProductDetailsTable extends Migration
             $table->bigIncrements('id');
             $table->string('image_url');
             $table->unsignedBigInteger('product_id');
-            $table->foreign('product_id')->references('id')->onDelete('cascade');
             $table->timestamps();
         });
     }

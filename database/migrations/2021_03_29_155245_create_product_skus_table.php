@@ -12,7 +12,8 @@ class CreateProductSkusTable extends Migration
      * @return void
      */
     public function up()
-    {
+    {   
+        Schema::dropIfExists('product_skus');
         Schema::create('product_skus', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name');
