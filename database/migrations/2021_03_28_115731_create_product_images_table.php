@@ -13,7 +13,7 @@ class CreateProductImagesTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('product_images');
+       
         Schema::create('product_images', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('image_url');

@@ -8,8 +8,7 @@ class CreateOrderItemsTable extends Migration
 {
     public function up()
     {   
-        //先删除原表再创建
-        Schema::dropIfExists('order_items');
+        
         Schema::create('order_items', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->unsignedBigInteger('order_id');

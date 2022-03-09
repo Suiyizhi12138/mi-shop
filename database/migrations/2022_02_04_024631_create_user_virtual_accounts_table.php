@@ -13,7 +13,7 @@ class CreateUserVirtualAccountsTable extends Migration
      */
     public function up()
     {
-        Schema::dropIfExists('user_virtual_accounts');
+        
         Schema::create('user_virtual_accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('balance',10,2)->comment('账户余额');

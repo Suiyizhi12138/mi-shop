@@ -12,8 +12,8 @@ class CreateOrdersTable extends Migration
      * @return void
      */
     public function up()
-    {   //先删除原表在创建
-        Schema::dropIfExists('orders');
+    {   
+        
         Schema::create('orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('no')->unique();
