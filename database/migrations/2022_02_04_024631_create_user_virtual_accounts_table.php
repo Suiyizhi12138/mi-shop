@@ -17,7 +17,7 @@ class CreateUserVirtualAccountsTable extends Migration
         Schema::create('user_virtual_accounts', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->decimal('balance',10,2)->comment('账户余额');
-            $table->bigInteger('user_id');
+            $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
